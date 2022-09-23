@@ -6,21 +6,21 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
     "A chat contains information about the messages sent into the chat and " +
     "the users participating in the chat's conversation",
 })
-@Entity({ name: "chat_list" })
+@Entity({ name: "chat_view" })
 export class Chat {
   @Field(() => Int)
   @PrimaryColumn("integer", { name: "_id" })
   id: number;
 
   @Field()
-  @Column("text", { name: "key_remote_jid" })
+  @Column("text", { name: "raw_string_jid" })
   jid: string;
 
   @Field({ nullable: true })
   @Column("text")
   subject: string;
 
-  @Column("integer")
+  @Column("integer", { name: "created_timestamp" })
   creation: number;
 
   @Column("integer", { name: "sort_timestamp" })

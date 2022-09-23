@@ -1,0 +1,11 @@
+#!/bin/bash
+
+image='whatsapp-viewver:main'
+
+docker build -t ${image} .
+
+docker run \
+  --rm -v "$(pwd)/backup:/app/backup" \
+  -p "3000:3000" \
+  --entrypoint=/bin/sh --workdir=/app \
+  -ti ${image}
